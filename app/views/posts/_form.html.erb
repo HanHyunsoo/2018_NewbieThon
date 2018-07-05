@@ -1,0 +1,27 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field container col-4">
+    <%= f.text_field :title, label: true, :class => "form-control mb-1", placeholder: "제목" %>
+  </div>
+  <div class="field container col-4">
+    <%= f.text_area :content, :class => "form-control mb1", :style => "height:250px;", placeholder: "내용을 입력하세요." %>
+  </div>
+  <div class="container col-4">
+    <!--<input type="file" name="image" accept="image/*">-->
+    <%= f.file_field :image, :class => "form-control mb-3" %>
+  </div>
+  <div class="actions">
+    <%= f.submit :class => "btn btn-success", value: "작성" %>
+  </div>
+<% end %>

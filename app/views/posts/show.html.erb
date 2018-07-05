@@ -1,0 +1,53 @@
+
+<main role="main">
+<p id="notice"><%= notice %></p>
+<% if @time - @post.created_at >= 31536000 %> <!-- 1년:31536000  --> 
+<div class="container card mb-3 col-6">
+  <img class="card-img-top" src="<%=@post.image%>" style="padding-top:10px;">
+  <div class="card-body">
+    <h2 class="card-title"><b><%= @post.title %></b></h2>
+    <h5 class="card-text"><%= @post.content %></h5>    
+    <p class="card-text muted"><%=time_ago_in_words(@post.created_at)  %></p> 
+    <!--+31536000 -@time-->
+  </div>
+<% else %>
+<script>
+alert('아직 열리지 않은 타입캡슐입니다.');
+</script>
+<div class="container card mb-3 col-6">
+<%= image_tag("lock.png", :class => "card-img-top", :style => "padding-top:10px;") %>
+  <div class="card-body">
+    <h2 class="card-title"><b><%= @post.title %></b></h2>
+    <h5 class="card-text"><%= @post.content %></h5>    
+    <p class="card-text muted"><%= time_ago_in_words(@post.created_at) %></p>
+  </div>
+<% end %>
+  
+<!-- 라이브리 시티 설치 코드 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjI3MC8xMjgwNQ==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 라이브리 댓글 작성을 위해 JavaScript를 활성화 해주세요</noscript>
+</div>
+<!-- 시티 설치 코드 끝 -->
+
+<p><%= link_to '수정', edit_post_path(@post) %> | <%= link_to '뒤로가기', posts_path %></p>
+</div>
+</main>
+    <footer class="footer">
+      <div class="container text-center">
+        <span class="text-muted">LikeLion 6th 2018 Newbiethon</span><br>
+        <span class="text-muted">가정의달 5팀 이민아 강연우 이혜진 김세윤 한현수 조민욱</span>
+      </div>
+    </footer>

@@ -1,0 +1,31 @@
+<main role="main">
+  <div class="text-center album py-5">
+    <div class="container col-4">
+      <h2>비밀번호를 잊으셨나요?</h2>
+      <p class="lead text-muted"><small>
+          등록하신 Email을 입력해주시면,<br>
+          비밀번호가 해당 Email로 발송됩니다.
+      </small></p>
+      <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :email, :input_html => { :class => 'form-control mb-3' }, label: false, placeholder:'Email', required: true, autofocus: true %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "비밀번호 찾기", :class => 'btn btn-lg btn-success btn-block' %>
+      </div>
+      <% end %>
+      
+      
+      <!--signup과 login기능 주석처리-->
+      <!--<%= render "devise/shared/links" %>-->
+    </div>
+  </div>
+</main>
+
+    <footer class="footer">
+      <div class="container text-center">
+        <span class="text-muted">LikeLion 6th 2018 Newbiethon</span><br>
+        <span class="text-muted">가정의달 5팀 이민아 강연우 이혜진 김세윤 한현수 조민국</span>
+      </div>
+    </footer>

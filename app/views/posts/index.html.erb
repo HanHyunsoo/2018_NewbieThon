@@ -1,0 +1,44 @@
+<main role="main">
+  <div class="text-center album py-5">
+    <p id="notice"><%= notice %></p>
+    <div class="container col-10">
+    <h1><b>사진첩</b></h1>
+    <p>소중한 순간을 소중한 사람과 <span style="color:#9ed510"><strong>타임캡슐</strong></span>로 저장하세요!</p>
+    <div class="container col-4">
+      <p class="new-post-text"><%= link_to '새 추억 담기', new_post_path, :class => 'btn btn-lg btn-success btn-block' %></p>
+    </div>
+    <div class="album py-5">
+      <div class="row">
+        <% @posts.each do |post| %>
+        <div class="col-md-3">
+          <div class ="card mb-4 box-shadow"> 
+            <% if @time - post.created_at >= 100 %> <!-- 1년:31536000  -->
+              <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="<%= post.image %>">
+            <% else %>
+            <%= image_tag("lock.png", :class => "card-img-top", :style => "height: 225px; width: 100%; display: block;") %>
+            <% end %>
+          <div class="card-body">
+          <h5 style="height:60px;"><%= link_to post.title, post, :class => "post-title-text" %></h5>
+          <p class="card-text"></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+            <%= link_to '수정', edit_post_path(post) , :class => "btn btn-success" %>
+            <%= link_to '삭제', post, method: :delete, :class => "btn btn-light post-title-delete",  data: { confirm: '정말 삭제하시겠습니까?' } %>
+            </div>
+            <small class="text-muted">열리려면 <%= time_ago_in_words(post.created_at+ 1.year)%> 남았습니다</small>
+          </div>
+        </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      
+      
+    </div>  
+</main>
+    <footer class="footer">
+      <div class="container text-center">
+        <span class="text-muted">LikeLion 6th 2018 Newbiethon</span><br>
+        <span class="text-muted">가정의달 5팀 이민아 강연우 이혜진 김세윤 한현수 조민국</span>
+      </div>
+    </footer>
